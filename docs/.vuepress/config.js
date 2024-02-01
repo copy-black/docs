@@ -1,3 +1,6 @@
+const moment = require('moment')
+moment.locale('zh-CN')
+
 module.exports = {
     title: '万物归一',
     description: '万物归一的宝典',
@@ -5,6 +8,16 @@ module.exports = {
         ['link', { rel: 'icon', href: '/asserts/logo.png' }],
         ['meta', { name: 'author', content: '万物归一的宝典' }],
         ['meta', { name: 'keywords', content: '万物归一宝典介绍'}]
+    ],
+    plugins: [
+        [
+            '@vuepress/last-updated',
+            {
+                transformer: (timestamp, lang) => {
+                    return moment(timestamp).format('LLLL');
+                }
+            }
+        ]
     ],
     themeConfig: {
         lastUpdated: '更新时间',
